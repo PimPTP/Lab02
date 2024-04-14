@@ -51,7 +51,8 @@ TIM_HandleTypeDef htim3;
 uint32_t QEIRead;
 float degree;
 uint16_t ADCRead[20]={0};
-uint16_t setpoint;
+float ADC;
+float setpoint;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -116,7 +117,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  QEIRead = __HAL_TIM_GET_COUNTER(&htim3);
 	  degree = (QEIRead/3072.0)*360;
-	  setpoint = (ADCRead[0]/4095)*360;
+	  ADC = ADCRead[0];
+	  setpoint = (ADC/4095)*360;
   }
   /* USER CODE END 3 */
 }
