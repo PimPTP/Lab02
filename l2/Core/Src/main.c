@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "arm_math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +49,7 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 uint32_t QEIRead;
-float degree;
+float position;
 uint16_t ADCRead[20]={0};
 float ADC;
 float setpoint;
@@ -63,7 +63,7 @@ static void MX_LPUART1_UART_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
-
+void MotorControl();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -116,9 +116,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  QEIRead = __HAL_TIM_GET_COUNTER(&htim3);
-	  degree = (QEIRead/3072.0)*360;
+	  position = (QEIRead/3072.0)*360;
 	  ADC = ADCRead[0];
 	  setpoint = (ADC/4095)*360;
+//	  MotorControl();
+
   }
   /* USER CODE END 3 */
 }
@@ -392,7 +394,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void MotorControl()
+{
 
+}
 /* USER CODE END 4 */
 
 /**

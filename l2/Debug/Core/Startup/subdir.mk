@@ -16,7 +16,7 @@ S_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Startup/%.o: ../Core/Startup/%.s Core/Startup/subdir.mk
-	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/BasicMathFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/BayesFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/CommonTables" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/ComplexMathFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/ControllerFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/DistanceFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/FastMathFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/FilteringFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/InterpolationFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/MatrixFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/QuaternionMathFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/StatisticsFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/SupportFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/SVMFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/TransformFunctions" -I"C:/Users/USER/Desktop/PIM/MicroCon/Lab02/l2/Source/WindowFunctions" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
 clean: clean-Core-2f-Startup
 
