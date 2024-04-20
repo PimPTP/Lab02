@@ -49,6 +49,7 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+arm_pid_instance_f32 PID = {0};
 uint32_t QEIRead;
 float position;
 uint16_t ADCRead[20]={0};
@@ -67,7 +68,6 @@ static void MX_ADC1_Init(void);
 static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 void MotorControl();
-void MotorPWM();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -113,6 +113,11 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc1, ADCRead, 20);
   HAL_TIM_Base_Start(&htim1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+
+  PID.Kp = 100;
+  PID.Ki = 0.01;
+  PID.Kd = 100;
+  arm_pid_init_f32(&PID, 0);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,9 +131,7 @@ int main(void)
 	  position = (QEIRead/3072.0)*360;
 	  ADC = ADCRead[0];
 	  setpoint = (ADC/4095)*360;
-//	  MotorControl();
-//	  Vout = ;
-	  MotorPWM();
+	  MotorControl();
 
   }
   /* USER CODE END 3 */
@@ -487,18 +490,16 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void MotorControl()
 {
-
-}
-
-void MotorPWM()
-{
 	static uint32_t timestamp = 0;
 	if(HAL_GetTick() >= timestamp)
 	{
 		timestamp = HAL_GetTick()+500;
+
+		Vout = arm_pid_f32(&PID, setpoint - position);
 		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,Vout);
 	}
 }
+
 /* USER CODE END 4 */
 
 /**
