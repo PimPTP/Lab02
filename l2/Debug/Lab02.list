@@ -1086,7 +1086,7 @@ int main(void)
  8000d90:	485a      	ldr	r0, [pc, #360]	; (8000efc <main+0x1ac>)
  8000d92:	f004 fad1 	bl	8005338 <HAL_TIM_PWM_Start>
 
-  PID.Kp = 200;
+  PID.Kp = 100;
  8000d96:	4b5a      	ldr	r3, [pc, #360]	; (8000f00 <main+0x1b0>)
  8000d98:	4a5a      	ldr	r2, [pc, #360]	; (8000f04 <main+0x1b4>)
  8000d9a:	619a      	str	r2, [r3, #24]
@@ -1268,7 +1268,7 @@ int main(void)
  8000ef8:	20000028 	.word	0x20000028
  8000efc:	20000188 	.word	0x20000188
  8000f00:	20000220 	.word	0x20000220
- 8000f04:	43480000 	.word	0x43480000
+ 8000f04:	42c80000 	.word	0x42c80000
  8000f08:	3dcccccd 	.word	0x3dcccccd
  8000f0c:	20000274 	.word	0x20000274
  8000f10:	457ff000 	.word	0x457ff000

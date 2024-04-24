@@ -114,7 +114,7 @@ int main(void)
   HAL_TIM_Base_Start(&htim1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 
-  PID.Kp = 200;
+  PID.Kp = 100;
   PID.Ki = 0.1;
   PID.Kd = 0.1;
   arm_pid_init_f32(&PID, 0);
